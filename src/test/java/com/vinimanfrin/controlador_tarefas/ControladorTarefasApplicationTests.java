@@ -1,4 +1,4 @@
-package com.vinimanfrin.controladortarefas;
+package com.vinimanfrin.controlador_tarefas;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

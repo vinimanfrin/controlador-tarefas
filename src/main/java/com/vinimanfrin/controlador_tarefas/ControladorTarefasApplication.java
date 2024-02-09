@@ -1,4 +1,4 @@
-package com.vinimanfrin.controladortarefas;
+package com.vinimanfrin.controlador_tarefas;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
