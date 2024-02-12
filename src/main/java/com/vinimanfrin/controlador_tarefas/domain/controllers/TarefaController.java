@@ -5,6 +5,7 @@ import com.vinimanfrin.controlador_tarefas.domain.tarefa.Tarefa;
 import com.vinimanfrin.controlador_tarefas.domain.tarefa.dtos.DadosAdicionarTarefa;
 import com.vinimanfrin.controlador_tarefas.domain.tarefa.dtos.DadosAtualizacaoTarefa;
 import com.vinimanfrin.controlador_tarefas.domain.tarefa.dtos.DadosDetalhamentoTarefa;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,7 +36,7 @@ public class TarefaController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<DadosDetalhamentoTarefa> adicionarTarefa(@RequestBody DadosAdicionarTarefa dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<DadosDetalhamentoTarefa> adicionarTarefa(@RequestBody @Valid DadosAdicionarTarefa dados, UriComponentsBuilder uriBuilder){
         var tarefa = repository.save(new Tarefa(dados));
         var uri = uriBuilder.path("/tarefas/{id}").buildAndExpand(tarefa.getId()).toUri();
         return ResponseEntity.created(uri).body(new DadosDetalhamentoTarefa(tarefa));
@@ -50,7 +51,7 @@ public class TarefaController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<DadosDetalhamentoTarefa> atualizarTarefa(@PathVariable Long id, @RequestBody DadosAtualizacaoTarefa dados){
+    public ResponseEntity<DadosDetalhamentoTarefa> atualizarTarefa(@PathVariable Long id, @RequestBody @Valid DadosAtualizacaoTarefa dados){
         var tarefa = repository.getReferenceById(id);
         tarefa.atualizar(dados);
         return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));

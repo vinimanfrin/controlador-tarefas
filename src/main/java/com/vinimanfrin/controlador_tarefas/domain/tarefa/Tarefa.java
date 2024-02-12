@@ -33,12 +33,12 @@ public class Tarefa {
         this.descricao = dados.descricao();
         this.concluida = false;
         this.dataCriacaoTarefa = LocalDateTime.now();
-        this.categoria = dados.categoria();
+        this.categoria = Categoria.valueOf(dados.categoria());
     }
 
     public void atualizar(DadosAtualizacaoTarefa dados) {
         if (dados.descricao() != null) this.descricao = dados.descricao();
-        if (dados.categoria() != null) this.categoria = dados.categoria();
+        if (dados.categoria() != null) this.categoria = Categoria.valueOf(dados.categoria());
     }
 
     public void concluir(){
