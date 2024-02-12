@@ -11,6 +11,6 @@ public record DadosDetalhamentoTarefa(Long id,
                                       LocalDateTime dataRealizacaoTarefa,
                                       Categoria categoria) {
     public DadosDetalhamentoTarefa(Tarefa tarefa){
-        this(tarefa.getId(), tarefa.getDescricao(), tarefa.isConcluida(), tarefa.getDataCriacaoTarefa(),tarefa.getDataRealizacaoTarefa(),tarefa.getCategoria());
+        this(tarefa.getId(), tarefa.getDescricao(), tarefa.isConcluida(), tarefa.getDataCriacaoTarefa(),tarefa.getDataConclusaoTarefa(),tarefa.getCategoria());
     }
 }

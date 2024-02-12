@@ -24,14 +24,12 @@ public class TarefaController {
     @GetMapping
     public ResponseEntity<Page<DadosDetalhamentoTarefa>> buscarTodos(@PageableDefault(size = 10) Pageable paginacao){
         var page = repository.findAll(paginacao).map(DadosDetalhamentoTarefa::new);
-
         return ResponseEntity.ok(page);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<DadosDetalhamentoTarefa> buscarPeloId(@PathVariable Long id){
         var tarefa = repository.getReferenceById(id);
-
         return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));
     }
 
@@ -40,7 +38,6 @@ public class TarefaController {
     public ResponseEntity<DadosDetalhamentoTarefa> adicionarTarefa(@RequestBody DadosAdicionarTarefa dados, UriComponentsBuilder uriBuilder){
         var tarefa = repository.save(new Tarefa(dados));
         var uri = uriBuilder.path("/tarefas/{id}").buildAndExpand(tarefa.getId()).toUri();
-
         return ResponseEntity.created(uri).body(new DadosDetalhamentoTarefa(tarefa));
     }
 
@@ -48,7 +45,6 @@ public class TarefaController {
     @Transactional
     public ResponseEntity apagarTarefa(@PathVariable Long id){
         repository.deleteById(id);
-
         return ResponseEntity.noContent().build();
     }
 
@@ -57,7 +53,14 @@ public class TarefaController {
     public ResponseEntity<DadosDetalhamentoTarefa> atualizarTarefa(@PathVariable Long id, @RequestBody DadosAtualizacaoTarefa dados){
         var tarefa = repository.getReferenceById(id);
         tarefa.atualizar(dados);
+        return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));
+    }
 
+    @PutMapping("/{id}/concluir")
+    @Transactional
+    public ResponseEntity<DadosDetalhamentoTarefa> concluirTarefa (@PathVariable Long id){
+        var tarefa = repository.getReferenceById(id);
+        tarefa.concluir();
         return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));
     }
 }

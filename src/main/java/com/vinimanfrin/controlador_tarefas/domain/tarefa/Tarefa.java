@@ -24,7 +24,7 @@ public class Tarefa {
     private String descricao;
     private boolean concluida;
     private LocalDateTime dataCriacaoTarefa;
-    private LocalDateTime dataRealizacaoTarefa;
+    private LocalDateTime dataConclusaoTarefa;
 
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
@@ -39,5 +39,10 @@ public class Tarefa {
     public void atualizar(DadosAtualizacaoTarefa dados) {
         if (dados.descricao() != null) this.descricao = dados.descricao();
         if (dados.categoria() != null) this.categoria = dados.categoria();
+    }
+
+    public void concluir(){
+        this.concluida = true;
+        this.dataConclusaoTarefa = LocalDateTime.now();
     }
 }
