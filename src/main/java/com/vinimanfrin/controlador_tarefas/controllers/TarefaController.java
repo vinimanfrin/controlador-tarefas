@@ -1,6 +1,6 @@
-package com.vinimanfrin.controlador_tarefas.domain.controllers;
+package com.vinimanfrin.controlador_tarefas.controllers;
 
-import com.vinimanfrin.controlador_tarefas.domain.repositories.TarefaRepository;
+import com.vinimanfrin.controlador_tarefas.repositories.TarefaRepository;
 import com.vinimanfrin.controlador_tarefas.domain.tarefa.Tarefa;
 import com.vinimanfrin.controlador_tarefas.domain.tarefa.dtos.DadosAdicionarTarefa;
 import com.vinimanfrin.controlador_tarefas.domain.tarefa.dtos.DadosAtualizacaoTarefa;

@@ -1,4 +1,4 @@
-package com.vinimanfrin.controlador_tarefas.infra;
+package com.vinimanfrin.controlador_tarefas.infra.exceptions;
 
 import org.springframework.validation.FieldError;
 

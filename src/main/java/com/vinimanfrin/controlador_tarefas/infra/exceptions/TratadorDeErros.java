@@ -1,4 +1,4 @@
-package com.vinimanfrin.controlador_tarefas.infra;
+package com.vinimanfrin.controlador_tarefas.infra.exceptions;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;

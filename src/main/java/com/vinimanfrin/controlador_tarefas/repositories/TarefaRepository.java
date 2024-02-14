@@ -1,4 +1,4 @@
-package com.vinimanfrin.controlador_tarefas.domain.repositories;
+package com.vinimanfrin.controlador_tarefas.repositories;
 
 import com.vinimanfrin.controlador_tarefas.domain.tarefa.Tarefa;
 import org.springframework.data.domain.Example;
