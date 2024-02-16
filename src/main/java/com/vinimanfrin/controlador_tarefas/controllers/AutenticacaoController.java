@@ -1,7 +1,9 @@
 package com.vinimanfrin.controlador_tarefas.controllers;
 
 import com.vinimanfrin.controlador_tarefas.domain.user.LoginDTO;
+import com.vinimanfrin.controlador_tarefas.domain.user.RespostaLoginDTO;
 import com.vinimanfrin.controlador_tarefas.domain.user.User;
+import com.vinimanfrin.controlador_tarefas.infra.security.TokenService;
 import com.vinimanfrin.controlador_tarefas.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +26,17 @@ public class AutenticacaoController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid LoginDTO dados){
 
         var dadosAutenticacaoSpring = new UsernamePasswordAuthenticationToken(dados.login(),dados.senha());
         var autenticacao = manager.authenticate(dadosAutenticacaoSpring);
+        var token = tokenService.gerarToken((User) autenticacao.getPrincipal());
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new RespostaLoginDTO(token));
     }
 
     @PostMapping("/cadastrar")
